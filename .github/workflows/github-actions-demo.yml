@@ -1,6 +1,11 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+# 触发 workflow 的事件
 on: [push]
+  # 分支随意
+  branches:
+    - master
+# 一个workflow由执行的一项或多项job
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -16,3 +21,35 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+  build:
+    #运行在最新版ubuntu系统中
+    run-on: ubuntu-latest
+    #步骤合集
+    steps:
+      #新建一个名为checkout_actions的步骤
+      - name: checkout_actions
+        #使用checkout@v2这个action获取源码
+        uses: actions/checkout@v2
+        #使用建一个名为setup-node的步骤
+      - name: setup-node
+          #使用setup-node@v1这个action
+          uses: actions/setup-node@v1
+          #指定某个action可能需要输入的参数
+          with:
+            node-version: '14'
+      - name:npm install and build 
+        #执行某个shell命令或脚本
+        run: |
+          npm install
+          npm run build
+      - name: commit push
+        #执行某个shell命令或脚本
+        run: |
+          git config --global user.email zhou0206cindy@163.com
+          git config --global user.name zhou0206cindy
+          git add .
+          git commit -m "update" -a
+          git push
+      # 环境变量
+     env:
+       email: zhou0206cindy@163.com
