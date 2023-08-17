@@ -6,8 +6,8 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
-	steps:
-	  - name: Show environment v1
-	    run: env | grep ^GITHUB
-          - name: Show ref v1
-	    run: echo "---> Version from $Github_REF"
+    steps:
+      - name: Show environment v1
+        run: env | grep ^GITHUB
+      - name: Show ref v1
+        run: echo "---> Version from $Github_REF"
