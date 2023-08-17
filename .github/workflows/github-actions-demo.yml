@@ -5,9 +5,9 @@ on: push
   workflow_despatch 
 jobs:
   test:
-    runs-on: ubuntu-1708
+    runs-on: ubuntu-latest
 	steps:
 	  - name: Show environment v1
 	    run: env | grep ^GITHUB
-	  - name: Show ref v1
+          - name: Show ref v1
 	    run: echo "---> Version from $Github_REF"
