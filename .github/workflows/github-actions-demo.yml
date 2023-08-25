@@ -1,6 +1,13 @@
 name: Share data between jobs
 
-on: [push]
+on: 
+  push：
+    branches:
+      - main
+  pull-request:
+    branches:
+      - main
+      - release/*
 
 jobs:
   job_1:
